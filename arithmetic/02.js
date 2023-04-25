@@ -24,9 +24,7 @@ var twoSum = function (nums, target) {
 			}
 		}
 	}
-
 	return arr
-
 };
 
 console.log(twoSum([2, 4, 11, 3], 6));

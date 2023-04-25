@@ -40,9 +40,141 @@
 		// console.log(person);
 		// console.log(temp);
 
+		//使用promise每隔一秒输出123
+
+		// async function async1() {
+		// 	console.log('async1 start')
+		// 	await async2()
+		// 	console.log('async1 end')
+		// 	await async3()
+		// 	console.log('async1 end2')
+		// }
+
+		// async function async2() {
+		// 	console.log('async2')
+		// }
+
+		// async function async3() {
+		// 	console.log('async3')
+		// }
+
+		// console.log('script start')
+		// async1()
+		// console.log('script end')
 
 
+		// script start
+		// async1 start
+		// async2
+		// script end
+		//async1 end
+		// async3
+		// async1 end2
 
+		// async function async1() {
+		// 	console.log('async1 start')
+		// 	await async2()
+		// 	console.log('async1 end')
+		// }
+		// async function async2() {
+		// 	console.log('async2')
+		// }
+		// console.log('script start')
+		// setTimeout(() => {
+		// 	console.log('setTimeout')
+		// }, 0);
+		// async1()
+		// new Promise(resolve => {
+		// 	console.log('promise1')
+		// 	resolve()
+		// }).then(() => {
+		// 	console.log('promise2')
+		// })
+
+		// console.log('script end')
+
+		//script start
+		// async1 start
+		//async2
+		//promise1
+		//script end
+		//async1 end
+		//promise2
+		//setTimeout
+
+		// async function async1() {
+		// 	console.log('async1 start')
+		// 	await async2()
+		// 	console.log('async1 end')
+		// }
+		// async function async2() {
+		// 	new Promise(resolve => {
+		// 		console.log('promise1')
+		// 		resolve()
+		// 	}).then(() => {
+		// 		console.log('promise2')
+		// 	})
+		// }
+		// console.log('script start')
+		// setTimeout(() => {
+		// 	console.log('setTimeout')
+		// }, 0);
+		// async1()
+		// new Promise(resolve => {
+		// 	console.log('promise3')
+		// 	resolve()
+		// }).then(() => {
+		// 	console.log('promise4')
+		// })
+
+		// console.log('script end')
+
+
+		//script start
+		//async1 start
+		//promise1
+		//promise3
+		//script end
+		//promise2
+		//async1 end
+		//promise4
+		//setTimeout
+
+		// async function async1() {
+		// 	console.log('async1 start')
+		// 	await async2()
+		// 	setTimeout(() => {
+		// 		console.log('setTimeout1')
+		// 	}, 0)
+		// }
+		// async function async2() {
+		// 	setTimeout(() => {
+		// 		console.log('setTimeout2')
+		// 	}, 0)
+		// }
+		// console.log('script start')
+		// setTimeout(() => {
+		// 	console.log('setTimeout3')
+		// }, 0);
+		// async1()
+		// new Promise(resolve => {
+		// 	console.log('promise1')
+		// 	resolve()
+		// }).then(() => {
+		// 	console.log('promise2')
+		// })
+
+		// console.log('script end')
+
+	//script start
+	//async1 start
+	//promise1
+	// script end
+	//promise2
+//setTimeout3
+
+	//setTimeout2
+	//setTimeout1
 	</script>
 </body>
 

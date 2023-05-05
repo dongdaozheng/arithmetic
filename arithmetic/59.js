@@ -9,18 +9,22 @@
 如果这个过程 结果为 1，那么这个数就是快乐数。
 如果 n 是 快乐数 就返回 true ；不是，则返回 false 。
  */
+
 var isHappy = function (n) {
+	let result = true
+	function recursion(n) {
+		let temp = 0
+		n = n.toString().split('')
+		for (let index = 0; index < n.length; index++) {
+			temp += Number(n[index]) * Number(n[index])
+		}
+		if (temp === 1) {
+			return result
+		}
+		console.log(temp);
+	}
 
-	let result = 0
+	recursion(n)
+}
 
-	n = n.toString()
-
-
-
-
-
-
-
-};
-
-console.log(isHappy(19));
+console.log(isHappy(1));

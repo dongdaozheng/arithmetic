@@ -6,17 +6,14 @@
 var areDeeplyEqual = function (o1, o2) {
 
 	if (o1 instanceof Object && o2 instanceof Object) {
-		const map1 = new Map(Object.entries(o1))
-		const map2 = new Map(Object.entries(o2))
-		for (const [key, value] of map1) {
-			if (!map2.has(key) || map2.get(key) !== value) {
-				return false
-			}
+		const o1Map = new Map(Object.entries(o1))
+		const o2Map = new Map(Object.entries(o2))
+		for (const [key, value] of o1Map) {
+			if (value !== o2Map.get(key)) return false
 		}
-	}
+	} else if (o1 !== o2) return false
 
 	return true
-
 
 };
 console.log(areDeeplyEqual(false, true));

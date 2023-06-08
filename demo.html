@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>防抖</title>
+</head>
+
+<body>
+	<button id="debounce1">点我防抖！</button>
+
+	<script>
+		window.onload = function () {
+			var myDebounce = document.getElementById("debounce1");
+			myDebounce.addEventListener("click", debounce);
+		}
+
+		function debounce(fn) {
+			let timeout = null;
+			// return function () {
+			clearTimeout(timeout);
+			timeout = setTimeout(() => {
+				console.log("防抖成功！");
+
+				// fn.call(this, arguments);
+			}, 1000);
+		};
+		// }
+
+		function handle() {
+			console.log("防抖成功！");
+		}
+
+	</script>
+</body>
+
+</html>

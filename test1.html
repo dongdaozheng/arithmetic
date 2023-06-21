@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<audio controls></audio>
+	<script>
+		var audio = document.querySelector('audio');
+		const assetURL = './3.mpeg'
+		const audioContext = new AudioContext()
+		const buffSource = audioContext.createBufferSource()
+		fetchAB(assetURL, function (buf) {
+			console.log("🚀 ~ file: test1.html:16 ~ buf:", buf)
+
+			audioContext.decodeAudioData(buf, audioBuffer => {
+				console.log("🚀 ~ file: test1.html:19 ~ buf:", buf)
+
+				buffSource.buffer = audioBuffer
+				const destination = audioContext.createMediaStreamDestination()
+				buffSource.connect(destination)
+				// const audioTrack = destination.stream.getAudioTracks()[0]
+				// destination.stream.addTrack(audioTrack)
+				audio.srcObject = destination.stream
+				// buffSource.start()
+			})
+		});
+		audio.onplay = () => {
+			buffSource.start()
+		}
+
+		function fetchAB(url, cb) {
+			var xhr = new XMLHttpRequest;
+			xhr.open('get', url);
+			xhr.responseType = 'arraybuffer';
+			xhr.onload = function () {
+				cb(xhr.response);
+			};
+			xhr.send();
+		};
+	</script>
+</body>
+
+</html>

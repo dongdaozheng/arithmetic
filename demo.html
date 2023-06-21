@@ -2,37 +2,50 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>防抖</title>
+	<meta charset="utf-8" />
+	<title>Web Audio API examples: MediaStreamAudioDestination()</title>
 </head>
 
 <body>
-	<button id="debounce1">点我防抖！</button>
+	<h1>Web Audio API examples: MediaStreamAudioDestination()</h1>
 
+	<p>Encoding a pure sine wave to an Opus file</p>
+	<p><button>Make sine wave</button></p>
+
+	<audio controls></audio>
 	<script>
-		window.onload = function () {
-			var myDebounce = document.getElementById("debounce1");
-			myDebounce.addEventListener("click", debounce);
-		}
+		const b = document.querySelector("button");
+		let clicked = false;
+		let chunks = [];
+		let ac;
+		let osc;
+		let dest;
 
-		function debounce(fn) {
-			let timeout = null;
-			// return function () {
-			clearTimeout(timeout);
-			timeout = setTimeout(() => {
-				console.log("防抖成功！");
-
-				// fn.call(this, arguments);
-			}, 1000);
+		function fetchAB(url, cb) {
+			console.log(url);
+			var xhr = new XMLHttpRequest;
+			xhr.open('get', url);
+			xhr.responseType = 'arraybuffer';
+			xhr.onload = function () {
+				cb(xhr.response);
+			};
+			xhr.send();
 		};
-		// }
 
-		function handle() {
-			console.log("防抖成功！");
+		fetchAB('./3.mpeg', function (buf) {
+			chunks = buf
+		});
+
+		function init() {
+			ac = new AudioContext();
+			osc = new OscillatorNode(ac);
+			dest = new MediaStreamAudioDestinationNode(ac);
+			osc.connect(dest);
+			const blob = new Blob(chunks, { type: "audio/mpeg" });
+			document.querySelector("audio").src = URL.createObjectURL(blob);
+
 		}
-
+		init()
 	</script>
 </body>
 

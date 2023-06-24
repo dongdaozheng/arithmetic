@@ -19,3 +19,4 @@ var sortArray = function (nums) {
 	}
 	return sortArray(left).concat([item], sortArray(right))
 };
+console.log(sortArray([2, 0, 2, 1, 1, 0]));

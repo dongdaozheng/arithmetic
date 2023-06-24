@@ -44,17 +44,19 @@
 
 		// async function async1() {
 		// 	console.log('async1 start')
-		// 	await async2()
+		// 	async2()
 		// 	console.log('async1 end')
 		// 	await async3()
 		// 	console.log('async1 end2')
 		// }
 
 		// async function async2() {
-		// 	console.log('async2')
+		// 	await console.log('async2')
+		// 	console.log('1111');
 		// }
 
 		// async function async3() {
+		// 	await console.log('222');
 		// 	console.log('async3')
 		// }
 
@@ -62,14 +64,16 @@
 		// async1()
 		// console.log('script end')
 
-
-		// script start
-		// async1 start
-		// async2
-		// script end
+		//script start
+		//async1 start
+		//async2
 		//async1 end
-		// async3
-		// async1 end2
+		//222
+		//script end
+		//1111
+		//async3
+		//async1 end2
+
 
 		// async function async1() {
 		// 	console.log('async1 start')
@@ -91,16 +95,14 @@
 		// 	console.log('promise2')
 		// })
 
-		// console.log('script end')
-
 		//script start
-		// async1 start
+		//async1 start
 		//async2
 		//promise1
-		//script end
 		//async1 end
 		//promise2
 		//setTimeout
+
 
 		// async function async1() {
 		// 	console.log('async1 start')
@@ -166,15 +168,107 @@
 
 		// console.log('script end')
 
-	//script start
-	//async1 start
-	//promise1
-	// script end
-	//promise2
-//setTimeout3
+		//script start
+		//async1 start
+		//promise1
+		// script end
+		//promise2
+		//setTimeout3
 
-	//setTimeout2
-	//setTimeout1
+		//setTimeout2
+		//setTimeout1
+
+		// setTimeout(() => {
+		// 	console.log(1);
+		// }, 0)
+		// new Promise((res, rej) => {
+		// 	console.log(2);
+		// 	res('p1')
+		// 	new Promise((res, rej) => {
+		// 		console.log(3);
+		// 		setTimeout(() => {
+		// 			res('setTimeout2')
+		// 			console.log(4);
+		// 		}, 0)
+		// 		res('p2')
+		// 	}).then(data => {
+		// 		console.log(data);
+		// 	})
+		// 	setTimeout(() => {
+		// 		res('setTimeout1')
+		// 	})
+		// }).then(data => {
+		// 	console.log(data);
+		// })
+		// console.log(6);
+
+
+		// 2 3 6 p2 p1 1 4
+
+		// new Promise((res, rej) => {
+		// 	console.log(22);
+		// 	res()
+		// }).then(() => {
+		// 	console.log(11);
+		// 	setTimeout(() => {
+		// 		console.log(33);
+		// 	});
+		// 	(async () => {
+		// 		await console.log(66);
+		// 		console.log(77);
+		// 	})()
+		// }).finally(() => {
+		// 	console.log(44);
+		// })
+		// console.log(55);
+
+		// 2 5 1 6 7 4 3
+
+		new Promise((res, rej) => {
+			console.log(11);
+			res()
+			new Promise((res, rej) => {
+				console.log(33);
+				res()
+			}).then(() => {
+				console.log(44);
+				setTimeout(() => {
+					console.log(11);
+				});
+				(async () => {
+					await console.log(12);
+					console.log(13);
+					setTimeout(() => {
+						console.log(14);
+					})
+				})()
+				new Promise((res, rej) => {
+					console.log(77);
+					res()
+					setTimeout(() => {
+						console.log(10);
+					})
+				}).then(() => {
+					console.log(88);
+					setTimeout(() => {
+						console.log(99);
+					})
+				})
+			}).catch(() => {
+				console.log(55);
+			}).finally(() => {
+				console.log(66);
+			})
+		}).then(() => {
+			console.log(22);
+		})
+
+
+
+		//11 33 44 12 77 22 13 88 66 11 10 14 99
+
+
+
 	</script>
 </body>
 

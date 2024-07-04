@@ -6,18 +6,37 @@
 
  */
 var longestPalindrome = function (s) {
-	let ans = 0, mark = 0
-	const map = new Map()
-	for (const iterator of s) {
-		map.set(iterator, map.has(iterator) ? map.get(iterator) + 1 : 1)
-	}
-	for (const [key, value] of map) {
-		if (value % 2 === 0) ans += value
-		else {
-			ans += value > 1 ? value - 1 : 0
-			mark++
-		}
-	}
-	return mark ? ans + 1 : ans
+  if (!s || s.length < 1) return '';
+
+  let len = 0;
+  result = null;
+  for (let index = 0; index < s.length; index++) {
+    const sub = s[index];
+    let right = s.length;
+    while (right > index) {
+      const subString = s.substring(index, right);
+      if (subString.length < len) break;
+      if (isPalindrome(subString)) {
+        len = subString.length;
+        result = subString;
+      }
+      right--;
+    }
+  }
+  return result;
 };
-console.log(longestPalindrome("aaaaaccc"));
+
+function isPalindrome(str) {
+  let left = 0;
+  let right = str.length - 1;
+  while (left < right) {
+    if (str[left] !== str[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+  return true;
+}
+
+console.log(longestPalindrome('cbbd'));
